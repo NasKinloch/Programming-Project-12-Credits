@@ -1,0 +1,175 @@
+<!doctype html>
+
+<head>
+    <title>Game classes intro</title>
+    <script src="player.js"></script>
+    <script src="bullet.js"></script>
+    <script src="enemy.js"></script>
+</head>
+
+<body>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+</body>
+<script>
+    var canvas, canvasContext;
+
+    window.onload = function() {
+        canvas = document.getElementById('gameCanvas');
+        canvasContext = canvas.getContext('2d');
+
+        document.addEventListener('keydown', keyPressed);
+        document.addEventListener('keyup', keyReleased);
+
+        setInterval(mainloop, 1000 / 50);
+    }
+
+    var player = new Image();
+    player.src = 'player.png';
+
+    const P_SIZE = 20;
+    var pXpos = 200 - P_SIZE / 2;
+    var pYpos = 600 - P_SIZE;
+    var pXspeed = 10;
+    var pYspeed = 10;
+
+    const UP_KEY = 38;
+    const DOWN_KEY = 40;
+    const LEFT_KEY = 37;
+    const RIGHT_KEY = 39;
+    const SPACE_KEY = 32;
+
+    var score = 0;
+
+    var upKeyPressed = false;
+    var downKeyPressed = false;
+    var leftKeyPressed = false;
+    var rightKeyPressed = false;
+    var spaceKeyPressed = false;
+
+    var player = new Player(pXpos, pYpos, P_SIZE, P_SIZE, 'red', pXspeed, pYspeed);
+
+    var bullets = [];
+
+    var enemies = [];
+
+    var setUp = true;
+    var totalEnemies = 6;
+
+
+    function mainloop() {
+        colorRect(0, 0, canvas.width, canvas.height, 'black');
+
+        if (setUp) {
+            for (i = 0; i < totalEnemies; i++) {
+                makeEnemy();
+            }
+            setUp = false;
+        }
+
+
+        player.drawRect();
+        player.move();
+
+        if (bullets.length > 0) {
+            bullets.forEach(function(bullet, i, array) {
+                bullet.drawRect();
+                bullet.move();
+
+                if (bullet.outOfBounds() || bullet.hasCollided()) {
+                    delete bullets[i]
+                }
+            });
+            bullets = bullets.filter(item => item !== undefined);
+        }
+
+        if (enemies.length > 0) {
+            enemies.forEach(function(enemy, i) {
+                enemy.drawRect();
+                enemy.move();
+
+            });
+
+        }
+    }
+
+
+    function playerMove() {
+        pXpos += pXspeed;
+        
+    }
+
+    function keyPressed(evt) {
+        if (evt.keyCode == UP_KEY) {
+            upKeyPressed = true;
+        }
+        if (evt.keyCode == DOWN_KEY) {
+            downKeyPressed = true;
+        }
+        if (evt.keyCode == LEFT_KEY) {
+            leftKeyPressed = true;
+        }
+        if (evt.keyCode == RIGHT_KEY) {
+            rightKeyPressed = true;
+        }
+        if (evt.keyCode == SPACE_KEY) {
+            makeBullet();
+        }
+    }
+
+    function keyReleased(evt) {
+        if (evt.keyCode == UP_KEY) {
+            upKeyPressed = false;
+        }
+        if (evt.keyCode == DOWN_KEY) {
+            downKeyPressed = false;
+        }
+        if (evt.keyCode == LEFT_KEY) {
+            leftKeyPressed = false;
+        }
+        if (evt.keyCode == RIGHT_KEY) {
+            rightKeyPressed = false;
+        }
+    }
+
+
+    function makeBullet() {
+        const BULLET_SIZE = 5;
+        var bulletXpos = player.x + player.w / 2 - BULLET_SIZE;
+        var bulletYpos = player.y - BULLET_SIZE;
+        var bulletYspeed = 5;
+
+        var bullet = new Bullet(bulletXpos, bulletYpos, BULLET_SIZE, BULLET_SIZE, 'white', bulletYspeed);
+
+        bullets.push(bullet);
+
+    }
+
+    var enemyCounter = 0;
+
+    function makeEnemy() {
+        // var enemyPos = Math.floor(Math.random() * 7) + 1;// 1-7
+        const ENEMY_SIZE = 20;
+        const gap = 10;
+        var enemyXpos = enemyCounter * ENEMY_SIZE + gap * enemyCounter * enemyCounter;
+        var enemyYpos = 0;
+        var enemyXspeed = Math.floor(Math.random() * (10 - 3) + 3);
+        var enemyYspeed = Math.floor(Math.random() * (5 - 2) + 2);
+
+        enemyCounter++;
+
+        var enemy = new Enemy(enemyXpos, enemyYpos, ENEMY_SIZE, ENEMY_SIZE, 'green', enemyXspeed, enemyYspeed);
+        
+
+        enemies.push(enemy);
+
+    }
+
+
+
+
+    function colorRect(x, y, w, h, c) {
+        canvasContext.fillStyle = c;
+        canvasContext.fillRect(x, y, w, h);
+    }
+
+</script>
