@@ -17,6 +17,8 @@
         canvas = document.getElementById('gameCanvas');
         canvasContext = canvas.getContext('2d');
 
+       
+
         document.addEventListener('keydown', keyPressed);
         document.addEventListener('keyup', keyReleased);
 
@@ -58,17 +60,16 @@
 
     function mainloop() {
         colorRect(0, 0, canvas.width, canvas.height, 'black');
-
+        drawText(30,30,'score','20px arial','white');
         if (setUp) {
             for (i = 0; i < totalEnemies; i++) {
                 makeEnemy();
             }
             setUp = false;
         }
-
-
         player.drawRect();
         player.move();
+
 
         if (bullets.length > 0) {
             bullets.forEach(function(bullet, i, array) {
@@ -95,7 +96,7 @@
 
     function playerMove() {
         pXpos += pXspeed;
-        
+
     }
 
     function keyPressed(evt) {
@@ -147,7 +148,7 @@
     var enemyCounter = 0;
 
     function makeEnemy() {
-        // var enemyPos = Math.floor(Math.random() * 7) + 1;// 1-7
+        var enemyPos = Math.floor(Math.random() * 7) + 1; // 1-7
         const ENEMY_SIZE = 20;
         const gap = 10;
         var enemyXpos = enemyCounter * ENEMY_SIZE + gap * enemyCounter * enemyCounter;
@@ -158,13 +159,18 @@
         enemyCounter++;
 
         var enemy = new Enemy(enemyXpos, enemyYpos, ENEMY_SIZE, ENEMY_SIZE, 'green', enemyXspeed, enemyYspeed);
-        
+
+
 
         enemies.push(enemy);
 
     }
 
+    function score() {
 
+    }
+
+    
 
 
     function colorRect(x, y, w, h, c) {
@@ -172,4 +178,10 @@
         canvasContext.fillRect(x, y, w, h);
     }
 
+    function drawText(x,y,msg,f,c){
+        canvasContext.fillStyle = c;
+        canvasContext.font = f;
+        canvasContext.fillText(msg, x, y);
+    }
+    
 </script>
