@@ -62,8 +62,9 @@
 
     function mainloop() {
         colorRect(0, 0, canvas.width, canvas.height, 'black');
-//        Drawimgs(player, pXpos, pYpos, P_SIZE, P_SIZE);
+        //        Drawimgs(player, pXpos, pYpos, P_SIZE, P_SIZE);
         drawScore(30, 30, 'score', '20px arial', 'white');
+        drawStart(30, 30, 'Start', '20px arial', 'white');
 
 
 
@@ -173,14 +174,27 @@
     }
 
 
+    function drawStart(x, y, msg, f, c) {
+        canvasContext.fillStyle = c;
+        canvasContext.font = f;
+        canvasContext.fillText("Press Enter to Start", 50, 50);
+    }
+
+
+
+
+
+
+
+
     function colorRect(x, y, w, h, c) {
         canvasContext.fillStyle = c;
         canvasContext.fillRect(x, y, w, h);
     }
 
-//    function Drawimgs(src, x, y, w, h) { 
-//        canvasContext.drawImage(src, x, y, w, h);
-//    }
+    //    function Drawimgs(src, x, y, w, h) {
+    //        canvasContext.fillRect(src, x, y, w, h);
+    //    }
 
     function drawScore(x, y, msg, f, c) {
         canvasContext.fillStyle = c;
