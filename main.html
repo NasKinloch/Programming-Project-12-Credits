@@ -17,12 +17,13 @@
         canvas = document.getElementById('gameCanvas');
         canvasContext = canvas.getContext('2d');
 
-       
+
 
         document.addEventListener('keydown', keyPressed);
         document.addEventListener('keyup', keyReleased);
 
         setInterval(mainloop, 1000 / 50);
+
     }
 
     var player = new Image();
@@ -42,6 +43,7 @@
 
     var score = 0;
 
+
     var upKeyPressed = false;
     var downKeyPressed = false;
     var leftKeyPressed = false;
@@ -60,7 +62,10 @@
 
     function mainloop() {
         colorRect(0, 0, canvas.width, canvas.height, 'black');
-        drawText(30,30,'score','20px arial','white');
+        drawScore(30, 30, 'score', '20px arial', 'white');
+        
+ 
+
         if (setUp) {
             for (i = 0; i < totalEnemies; i++) {
                 makeEnemy();
@@ -165,23 +170,22 @@
         enemies.push(enemy);
 
     }
-
-    function score() {
-
-    }
-
     
-
+//    function drawScore() {
+//    ctx.font = "16px Arial";
+//    ctx.fillStyle = "#0095DD";
+//    ctx.fillText("Score: "+score, 8, 20);
+//    }
 
     function colorRect(x, y, w, h, c) {
         canvasContext.fillStyle = c;
         canvasContext.fillRect(x, y, w, h);
     }
 
-    function drawText(x,y,msg,f,c){
+    function drawScore(x, y, msg, f, c) {
         canvasContext.fillStyle = c;
         canvasContext.font = f;
-        canvasContext.fillText(msg, x, y);
+        canvasContext.fillText("Score: "+score, 8, 20);
     }
-    
+
 </script>
