@@ -62,9 +62,10 @@
 
     function mainloop() {
         colorRect(0, 0, canvas.width, canvas.height, 'black');
+//        Drawimgs(player, pXpos, pYpos, P_SIZE, P_SIZE);
         drawScore(30, 30, 'score', '20px arial', 'white');
-        
- 
+
+
 
         if (setUp) {
             for (i = 0; i < totalEnemies; i++) {
@@ -153,7 +154,7 @@
     var enemyCounter = 0;
 
     function makeEnemy() {
-        var enemyPos = Math.floor(Math.random() * 7) + 1; // 1-7
+        var enemyPos = Math.floor(Math.random() * 7) + 1; // 1-12
         const ENEMY_SIZE = 20;
         const gap = 10;
         var enemyXpos = enemyCounter * ENEMY_SIZE + gap * enemyCounter * enemyCounter;
@@ -170,22 +171,21 @@
         enemies.push(enemy);
 
     }
-    
-//    function drawScore() {
-//    ctx.font = "16px Arial";
-//    ctx.fillStyle = "#0095DD";
-//    ctx.fillText("Score: "+score, 8, 20);
-//    }
+
 
     function colorRect(x, y, w, h, c) {
         canvasContext.fillStyle = c;
         canvasContext.fillRect(x, y, w, h);
     }
 
+//    function Drawimgs(src, x, y, w, h) { 
+//        canvasContext.drawImage(src, x, y, w, h);
+//    }
+
     function drawScore(x, y, msg, f, c) {
         canvasContext.fillStyle = c;
         canvasContext.font = f;
-        canvasContext.fillText("Score: "+score, 8, 20);
+        canvasContext.fillText("Score: " + score, 8, 20);
     }
 
 </script>
