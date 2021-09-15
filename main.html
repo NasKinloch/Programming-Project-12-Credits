@@ -9,6 +9,8 @@
 
 <body>
     <canvas id="gameCanvas" width="400" height="600"></canvas>
+    
+<p id="demo" onclick="myFunction()">Click me.</p>
 </body>
 <script>
     var canvas, canvasContext;
@@ -151,6 +153,7 @@
         bullets.push(bullet);
 
     }
+    
 
     var enemyCounter = 0;
 
@@ -165,13 +168,17 @@
 
         enemyCounter++;
 
-        var enemy = new Enemy(enemyXpos, enemyYpos, ENEMY_SIZE, ENEMY_SIZE, 'green', enemyXspeed, enemyYspeed);
+        var enemy = new Enemy(enemyXpos, enemyYpos, ENEMY_SIZE, ENEMY_SIZE, 'green', enemyXspeed, enemyYspeed,);
 
 
 
         enemies.push(enemy);
 
     }
+    
+    function myFunction() {
+  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+}
 
 
     function drawStart(x, y, msg, f, c) {
@@ -179,11 +186,6 @@
         canvasContext.font = f;
         canvasContext.fillText("Press Enter to Start", 50, 50);
     }
-
-
-
-
-
 
 
 

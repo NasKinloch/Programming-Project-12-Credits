@@ -39,7 +39,7 @@ class Bullet {
                 delete enemies[i];
                 collided = true;
                 score++;
-                console.log('score:' + score);
+//                console.log('score:' + score);
             }
         });
         enemies = enemies.filter(item => item !== undefined);
