@@ -9,8 +9,8 @@
 
 <body>
     <canvas id="gameCanvas" width="400" height="600"></canvas>
-    
-<p id="demo" onclick="myFunction()">Click me.</p>
+
+<button onclick="setInterval(mainloop, 1000 / 50)">Increase Difficulty</button>
 </body>
 <script>
     var canvas, canvasContext;
@@ -66,7 +66,7 @@
         colorRect(0, 0, canvas.width, canvas.height, 'black');
         //        Drawimgs(player, pXpos, pYpos, P_SIZE, P_SIZE);
         drawScore(30, 30, 'score', '20px arial', 'white');
-        drawStart(30, 30, 'Start', '20px arial', 'white');
+        //        drawStart(30, 30, 'Start', '20px arial', 'white');
 
 
 
@@ -153,7 +153,7 @@
         bullets.push(bullet);
 
     }
-    
+
 
     var enemyCounter = 0;
 
@@ -168,24 +168,30 @@
 
         enemyCounter++;
 
-        var enemy = new Enemy(enemyXpos, enemyYpos, ENEMY_SIZE, ENEMY_SIZE, 'green', enemyXspeed, enemyYspeed,);
+        var enemy = new Enemy(enemyXpos, enemyYpos, ENEMY_SIZE, ENEMY_SIZE, 'green', enemyXspeed, enemyYspeed, );
 
 
 
         enemies.push(enemy);
 
-    }
-    
-    function myFunction() {
-  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
-}
 
 
-    function drawStart(x, y, msg, f, c) {
-        canvasContext.fillStyle = c;
-        canvasContext.font = f;
-        canvasContext.fillText("Press Enter to Start", 50, 50);
+
     }
+
+
+    var gameOver = false;
+    var startGame = false;
+
+    function startGame() {
+
+    }
+//
+//    function drawStart(x, y, msg, f, c) {
+//        canvasContext.fillStyle = c;
+//        canvasContext.font = f;
+//        canvasContext.fillText("Press Enter to Start", 50, 50);
+//    }
 
 
 
@@ -202,6 +208,7 @@
         canvasContext.fillStyle = c;
         canvasContext.font = f;
         canvasContext.fillText("Score: " + score, 8, 20);
+                canvasContext.fillText("Press Enter to Start", 50, 50);
     }
 
 </script>

@@ -16,19 +16,20 @@ class Player {
 
     }
 
-    move() {
-        if (rightKeyPressed) {
-            this.x += this.xSpeed;
-        }
-        if (leftKeyPressed) {
-            this.x -= this.xSpeed;
-        }
-        if (upKeyPressed) {
-            this.y -= this.ySpeed;
-        }
-        if (downKeyPressed) {
-            this.y += this.ySpeed;
-        }
-    }
 
-}
+        move() {
+            if (rightKeyPressed) {
+                this.x += this.xSpeed;
+            }
+            if (leftKeyPressed) {
+                this.x -= this.xSpeed;
+            }
+            if (upKeyPressed) {
+                this.y -= this.ySpeed;
+            }
+            if (downKeyPressed) {
+                this.y += this.ySpeed;
+            }
+        }
+
+    }

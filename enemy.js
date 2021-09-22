@@ -16,16 +16,21 @@ class Enemy {
     }
 
     move() {
-//        this.x += this.xSpeed;
-        this.y += this.ySpeed;
 
-        if (this.x + this.w >= canvas.width || this.x <= 0) {
-            this.xSpeed *= -1;
+            //        this.x += this.xSpeed;
+            this.y += this.ySpeed;
+
+            if (this.x + this.w >= canvas.width || this.x <= 0) {
+                this.xSpeed *= -1;
+            }
+
+            if (this.y > canvas.height) {
+                this.y = 0 - this.h;
+                this.ySpeed = Math.floor(Math.random() * (6 - 3) + 3);
+            }
         }
 
-        if(this.y >canvas.height){
-            this.y = 0 - this.h;
-            this.ySpeed = Math.floor(Math.random() * (6 - 3) + 3);
-        }
+
     }
-}
+
+
